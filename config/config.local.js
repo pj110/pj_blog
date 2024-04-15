@@ -2,7 +2,7 @@ module.exports = () => {
   const config = exports = {};
 
   // add your middleware config here
-  config.middleware = [];
+  // config.middleware = [];
 
   // add your user config here
   const userConfig = {
@@ -12,15 +12,15 @@ module.exports = () => {
       // 单数据库信息配置
       client: {
         // host
-        host: '127.0.0.1',
+        host: '43.138.162.161',
         // 端口号
         port: '3306',
         // 用户名
-        user: 'root',
+        user: 'bziaobiao_test',
         // 密码
-        password: '123456',
+        password: 'Cw8f4kta4hbYNpWj',
         // 数据库名
-        database: 'test',
+        database: 'bziaobiao_test',
       },
       // 是否加载到 app 上，默认开启
       app: true,

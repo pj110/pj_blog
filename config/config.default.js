@@ -14,11 +14,29 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1712800157406_1361';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'jwtVerify' ];
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    cluster: {
+      listen: {
+        path: '',
+        port: 3000,
+        hostname: '127.0.0.1',
+      },
+    },
+    security: {
+      csrf: {
+        enable: false,
+      },
+    },
+    jwtVerify: {
+      secret: 'wangdandan',
+    },
+    validate: {
+      convert: true,
+    },
   };
 
   return {

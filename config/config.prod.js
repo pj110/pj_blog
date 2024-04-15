@@ -5,7 +5,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1712800157406_1361';
 
   // add your middleware config here
-  config.middleware = [];
+  // config.middleware = [];
 
   // add your user config here
   const userConfig = {
@@ -15,15 +15,15 @@ module.exports = appInfo => {
       // 单数据库信息配置
       client: {
         // host
-        host: 'mysql.com',
+        host: '127.0.0.1',
         // 端口号
         port: '3306',
         // 用户名
-        user: 'test_user',
+        user: 'zhaobiao',
         // 密码
-        password: 'test_password',
+        password: 'KGFkjMZ24HHspa5m',
         // 数据库名
-        database: 'test',
+        database: 'zhaobiao',
       },
       // 是否加载到 app 上，默认开启
       app: true,
