@@ -1,4 +1,12 @@
+const utility = require('utility');
+
 module.exports = {
+  // md5加密
+  passwordMD5(pwd) {
+    const onePwd = utility.md5(pwd);
+    return utility.md5(onePwd + this.app.config.md5.key);
+  },
+  // 获取当前时间
   getNowTime() {
     // 创建一个 Date 对象，它会自动获取当前的日期时间
     const now = new Date();
@@ -19,6 +27,7 @@ module.exports = {
     // 格式化日期时间字符串，以便显示
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   },
+  // 转换时间
   returnTime(date) {
     // 创建一个 Date 对象，它会自动获取当前的日期时间
     const now = new Date(date);

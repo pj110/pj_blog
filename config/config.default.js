@@ -14,7 +14,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1712800157406_1361';
 
   // add your middleware config here
-  config.middleware = [ 'jwtVerify' ];
+  config.middleware = [ 'errInterceptors', 'jwtVerify' ];
 
   // add your user config here
   const userConfig = {
@@ -23,7 +23,7 @@ module.exports = appInfo => {
       listen: {
         path: '',
         port: 3000,
-        hostname: '127.0.0.1',
+        hostname: '0.0.0.0',
       },
     },
     security: {
@@ -36,6 +36,14 @@ module.exports = appInfo => {
     },
     validate: {
       convert: true,
+    },
+    multipart: {
+      mode: 'file',
+      fileSize: '50mb',
+      whitelist: [ '.jpeg', '.jpg', '.png', '.gif', '.docx', '.xls', '.doc', '.xlsx' ],
+    },
+    md5: {
+      key: 'pengjia',
     },
   };
 

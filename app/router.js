@@ -12,7 +12,7 @@ module.exports = app => {
   router.get('/goodById', controller.good.goodById);// 根据id获取商品详情
   router.post('/goodUpload', controller.good.goodUpload);// 上传文件
 
-  router.get('/user/', controller.user.index);
-  router.post('/user/add', controller.user.index);
-  router.post('/user/login', controller.user.index);
+  router.get('/users/', controller.user.index);
+  // router.post('/user/add', controller.user.add);
+  router.post('/users/login', controller.user.login);
 };

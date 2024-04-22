@@ -1,5 +1,8 @@
 const { Controller } = require('egg');
-const { getNowTime } = require('../util/index.js');
+const fs = require('fs');
+const path = require('path');
+
+// const { getNowTime } = require('../util/index.js');
 
 class GoodController extends Controller {
   async index() {
@@ -24,7 +27,7 @@ class GoodController extends Controller {
     }, reqData);
     // 如果没传就用当前时间
     if (!reqData.time) {
-      reqData.time = getNowTime();
+      reqData.time = ctx.helper.getNowTime();
     }
     const addData = await service.good.goodAdd(reqData);
     console.log('ctx', addData);
@@ -64,7 +67,7 @@ class GoodController extends Controller {
       },
     }, reqData);
 
-    reqData.updata_time = getNowTime();
+    reqData.updata_time = ctx.helper.getNowTime();
     const updatedata = await service.good.goodUpdate(reqData);
     console.log(updatedata);
     ctx.body = {
@@ -74,19 +77,84 @@ class GoodController extends Controller {
   }
 
   async goodList() {
+    const { ctx, service } = this;
+    const query = { ...ctx.query };
+    if (!query.pageSize) {
+      query.pageSize = 10;
+    }
+    // 校验参数
+    ctx.validate({
+      type: {
+        type: 'number',
+      },
+      page: {
+        type: 'number',
+      },
+    }, query);
+    const listData = await service.good.goodList(query);
+    ctx.body = {
+      code: 200,
+      data: listData,
+    };
 
   }
 
   async goodListAll() {
+    const { ctx, service } = this;
+    const query = { ...ctx.query };
+    if (!query.pageSize) {
+      query.pageSize = 10;
+    }
+    // 校验参数
+    ctx.validate({
+      page: {
+        type: 'number',
+      },
+    }, query);
+    const listData = await service.good.goodListAll(query);
+    ctx.body = {
+      code: 200,
+      data: listData,
+    };
 
   }
 
   async goodById() {
+    const { ctx, service } = this;
+    // 校验参数
+    ctx.validate({
+      id: {
+        type: 'number',
+      },
+    }, ctx.query);
+    const id = ctx.query.id;
+    const byIdData = await service.good.goodById(id);
+    ctx.body = {
+      code: 200,
+      data: byIdData,
+    };
   }
 
   async goodUpload() {
+    const { ctx } = this;
+    const file = ctx.request.files[0];
+    console.log('filename----------------------', file);
+    const fileData = fs.readFileSync(file.filepath);
+    const base64Str = Buffer.from(fileData, 'binary')
+      .toString('base64');
+    const bufferData = Buffer.from(base64Str, 'base64');
+    // 获取当前日期，用于文件创建
+    const timestamp = Date.now();
+    const filename = `file${timestamp}${path.extname(file.filename)}`;
+    // 指定上传路径
+    const uploadBasePath = '../public/uploadForFile';
+    const src = path.join(__dirname, uploadBasePath, filename);
+    await fs.writeFileSync(src, bufferData);
+    ctx.body = {
+      alt: file.filename,
+      url: `/public/uploadForFile/${filename}`,
+    };
   }
-
 }
 
 module.exports = GoodController;
