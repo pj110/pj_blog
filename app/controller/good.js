@@ -151,8 +151,11 @@ class GoodController extends Controller {
     const src = path.join(__dirname, uploadBasePath, filename);
     await fs.writeFileSync(src, bufferData);
     ctx.body = {
-      alt: file.filename,
-      url: `/public/uploadForFile/${filename}`,
+      code: 200,
+      data: {
+        alt: file.filename,
+        url: `/public/uploadForFile/${filename}`,
+      },
     };
   }
 }

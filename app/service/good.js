@@ -29,7 +29,9 @@ class goodService extends Service {
       offset: (data.page - 1) * data.pageSize,
     });
     const total = await this.app.mysql.count('zhaobiao_data', { type: data.type });
-
+    list.forEach(res => {
+      res.time = this.ctx.helper.returnTime(res.time);
+    });
     return {
       list,
       total,
@@ -45,6 +47,9 @@ class goodService extends Service {
       limit: data.pageSize,
       offset: (data.page - 1) * data.pageSize,
     });
+    list.forEach(res => {
+      res.time = this.ctx.helper.returnTime(res.time);
+    });
     const total = await this.app.mysql.count('zhaobiao_data', { type: [ 1, 2 ] });
 
     return {
@@ -55,6 +60,7 @@ class goodService extends Service {
 
   async goodById(id) {
     const mydata = await this.app.mysql.get('zhaobiao_data', { id: id });
+    mydata.time = this.ctx.helper.returnTime(mydata.time);
     const mySon = await this.app.mysql.select('zhaobiao_data', {
       where: {
         pid: id,

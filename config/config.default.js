@@ -1,13 +1,7 @@
 /* eslint valid-jsdoc: "off" */
 
-/**
- * @param {Egg.EggAppInfo} appInfo app info
- */
+
 module.exports = appInfo => {
-  /**
-   * built-in config
-   * @type {Egg.EggAppConfig}
-   **/
   const config = exports = {};
 
   // use for cookie sign key, should change to your own and keep security
@@ -18,12 +12,15 @@ module.exports = appInfo => {
 
   // add your user config here
   const userConfig = {
+    assets: {
+      publicPath: '/public/',
+    },
     // myAppName: 'egg',
     cluster: {
       listen: {
         path: '',
         port: 3000,
-        hostname: '0.0.0.0',
+        hostname: '127.0.0.1',
       },
     },
     security: {

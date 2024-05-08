@@ -1,4 +1,4 @@
-const whiteList = [ '/users/login', '/goodList', '/goodById' ];
+const whiteList = [ '/users/login', '/goodList', '/goodById', '/goodUpload' ];
 module.exports = options => {
   return async function jwtVerify(ctx, next) {
     console.log('token', ctx.request.path);
