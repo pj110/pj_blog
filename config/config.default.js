@@ -42,6 +42,13 @@ module.exports = appInfo => {
     md5: {
       key: 'pengjia',
     },
+    wx_id: {
+      appid: 'wx4dba73e527988340',
+      secret: '089a2290138125d2ad9ae36d106334ca'
+    },
+    httpclient: {
+      dataType: 'json'
+    }
   };
 
   return {
