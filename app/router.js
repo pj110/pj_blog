@@ -15,4 +15,10 @@ module.exports = app => {
   router.get('/users/', controller.user.index);
   // router.post('/user/add', controller.user.add);
   router.post('/users/login', controller.user.login);
+
+  //微信接口
+  router.post('/wechat', controller.wechat.getMessage);
+  router.get('/wechat', controller.wechat.index);
+  router.post('/test',controller.wechat.test)
+
 };

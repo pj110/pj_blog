@@ -6,6 +6,11 @@ module.exports = () => {
 
   // add your user config here
   const userConfig = {
+    logger: {
+      level: 'DEBUG',
+      dir: './logs/local', // 打印目录重定向
+      outputJSON: true, // json格式输出
+    },
     // myAppName: 'egg',
     // mysql配置
     mysql: {

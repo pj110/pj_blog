@@ -5,6 +5,7 @@ module.exports = () => {
       await next();
     } catch (err) {
       // console.log('err', JSON.stringify(err));
+      this.ctx.logger.error('这是个失败的操作', err);
       switch (err.code) {
         case 403:
           ctx.status = 403;
@@ -16,7 +17,8 @@ module.exports = () => {
           break;
         default:
           ctx.status = 500;
-          ctx.body = { message: '服务器错误', code: 1 };
+          console.log(err);
+          ctx.body = { message: err.message, code: 1 };
       }
     }
   };

@@ -7,12 +7,15 @@
     "declarations": true
   },
   "dependencies": {
+    "co-wechat": "^2.4.0",
+    "crypto": "^1.0.1",
     "egg": "^3.17.5",
     "egg-jwt": "^3.1.7",
     "egg-mysql": "^4.0.0",
     "egg-scripts": "2",
     "egg-validate": "^2.0.2",
-    "utility": "^2.1.0"
+    "utility": "^2.1.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "egg-bin": "6",
